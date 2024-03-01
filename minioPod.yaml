@@ -1,0 +1,26 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: minio-pod
+  labels:
+    app: minio
+spec:
+  containers:
+  - name: minio-container
+    image: quay.io/minio/minio:latest
+    env:
+    - name: MINIO_ACCESS_KEY
+      value: your-access-key
+    - name: MINIO_SECRET_KEY
+      value: your-secret-key
+    ports:
+    - containerPort: 9000
+    args:
+    - server
+    - /data 
+   
+  volumes:
+  - name: minio-storage
+    emptyDir: {}
+
